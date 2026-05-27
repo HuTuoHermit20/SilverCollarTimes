@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="images/tab-home-active.png" width="80" alt="银领时代 Logo" />
-</p>
-
 <h1 align="center">银领时代 · 孝心守护</h1>
 
 <p align="center">
