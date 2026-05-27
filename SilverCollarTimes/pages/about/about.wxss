@@ -1,0 +1,83 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 40rpx;
+}
+
+.about-header {
+  text-align: center;
+  padding: 60rpx 32rpx 40rpx;
+}
+
+.app-icon {
+  font-size: 96rpx;
+  margin-bottom: 16rpx;
+}
+
+.app-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.app-version {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  margin-top: 8rpx;
+}
+
+.about-desc {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid var(--border);
+}
+
+.feature-item:last-child {
+  border-bottom: none;
+}
+
+.feature-icon {
+  font-size: 40rpx;
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+}
+
+.feature-info {
+  flex: 1;
+}
+
+.feature-name {
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.feature-desc {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  margin-top: 4rpx;
+}
+
+.legal-item {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: var(--primary);
+  border-bottom: 1rpx solid var(--border);
+}
+
+.legal-item:last-child {
+  border-bottom: none;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-hint);
+  padding: 32rpx;
+}

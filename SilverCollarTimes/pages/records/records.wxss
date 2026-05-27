@@ -1,0 +1,254 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 120rpx;
+}
+
+.view-tabs {
+  display: flex;
+  background: var(--bg-card);
+  padding: 8rpx;
+  margin: 16rpx 24rpx;
+  border-radius: 12rpx;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border-radius: 8rpx;
+  transition: all 0.2s;
+}
+
+.tab-item.active {
+  background: var(--primary);
+  color: #FFF;
+}
+
+.filter-bar {
+  padding: 0 24rpx 16rpx;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  background: var(--bg-card);
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+/* 日视图时间轴 */
+.timeline {
+  padding: 0 24rpx;
+}
+
+.timeline-item {
+  display: flex;
+  padding: 16rpx 0;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  margin-top: 8rpx;
+  flex-shrink: 0;
+}
+
+.timeline-dot.online { background: var(--success); }
+.timeline-dot.warning { background: var(--warning); }
+.timeline-dot.danger { background: var(--danger); }
+.timeline-dot.offline { background: var(--text-hint); }
+
+.timeline-content {
+  flex: 1;
+  background: var(--bg-card);
+  border-radius: 12rpx;
+  padding: 20rpx;
+  box-shadow: var(--shadow);
+}
+
+.timeline-time {
+  font-size: 26rpx;
+}
+
+.timeline-time .planned {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.timeline-time .actual {
+  color: var(--text-secondary);
+}
+
+.timeline-medicine {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-top: 8rpx;
+}
+
+.timeline-slot {
+  font-size: 22rpx;
+  color: var(--text-hint);
+  margin-top: 4rpx;
+}
+
+.timeline-delay {
+  font-size: 22rpx;
+  color: var(--warning);
+  margin-top: 4rpx;
+}
+
+.timeline-supplement {
+  font-size: 20rpx;
+  color: var(--text-hint);
+  background: rgba(153,153,153,0.1);
+  display: inline-block;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  margin-top: 4rpx;
+}
+
+/* 周视图 */
+.week-grid {
+  display: flex;
+  margin: 0 24rpx;
+  gap: 8rpx;
+}
+
+.week-cell {
+  flex: 1;
+  background: var(--bg-card);
+  border-radius: 12rpx;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.week-day {
+  font-size: 22rpx;
+  color: var(--text-hint);
+}
+
+.week-date {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin: 8rpx 0;
+}
+
+.week-date.today {
+  color: var(--primary);
+  background: rgba(74,144,217,0.1);
+  border-radius: 50%;
+  width: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  margin: 8rpx auto;
+}
+
+.week-ring {
+  position: relative;
+  width: 56rpx;
+  height: 56rpx;
+  margin: 0 auto;
+}
+
+.mini-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.mini-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18rpx;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.week-no-data {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  margin-top: 16rpx;
+}
+
+/* 月视图 */
+.month-header {
+  padding: 16rpx 32rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0 24rpx;
+  gap: 4rpx;
+}
+
+.month-weekday {
+  text-align: center;
+  font-size: 22rpx;
+  color: var(--text-hint);
+  padding: 8rpx 0;
+}
+
+.month-cell {
+  aspect-ratio: 1;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+.month-cell.other-month {
+  opacity: 0.3;
+}
+
+.month-cell.today {
+  border: 2rpx solid var(--primary);
+}
+
+.month-rate {
+  font-size: 18rpx;
+  font-weight: 600;
+}
+
+/* 统计卡片 */
+.stats-card {
+  margin-top: 24rpx;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-hint);
+  margin-top: 4rpx;
+}

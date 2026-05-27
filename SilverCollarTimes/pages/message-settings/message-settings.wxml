@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">通知开关</view>
+    <view class="setting-row">
+      <view class="setting-label">服药提醒通知</view>
+      <switch checked="{{settings.medicineRemind}}" bindchange="onToggle" data-key="medicineRemind" />
+    </view>
+    <view class="setting-row">
+      <view class="setting-label">漏服提醒通知</view>
+      <switch checked="{{settings.missedRemind}}" bindchange="onToggle" data-key="missedRemind" />
+    </view>
+    <view class="setting-row">
+      <view class="setting-label">SOS紧急通知</view>
+      <switch checked="{{settings.sosNotify}}" bindchange="onToggle" data-key="sosNotify" />
+    </view>
+    <view class="setting-row">
+      <view class="setting-label">设备状态通知</view>
+      <switch checked="{{settings.deviceNotify}}" bindchange="onToggle" data-key="deviceNotify" />
+    </view>
+    <view class="setting-row">
+      <view class="setting-label">健康报告通知</view>
+      <switch checked="{{settings.reportNotify}}" bindchange="onToggle" data-key="reportNotify" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">免打扰时段</view>
+    <view class="setting-row">
+      <view class="setting-label">开启免打扰</view>
+      <switch checked="{{settings.dndEnabled}}" bindchange="onToggle" data-key="dndEnabled" />
+    </view>
+    <view class="setting-row" wx:if="{{settings.dndEnabled}}">
+      <view class="setting-label">开始时间</view>
+      <picker mode="time" value="{{settings.dndStart}}" bindchange="onDndStartChange">
+        <view class="picker-value">{{settings.dndStart}}</view>
+      </picker>
+    </view>
+    <view class="setting-row" wx:if="{{settings.dndEnabled}}">
+      <view class="setting-label">结束时间</view>
+      <picker mode="time" value="{{settings.dndEnd}}" bindchange="onDndEndChange">
+        <view class="picker-value">{{settings.dndEnd}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">订阅消息</view>
+    <view class="setting-row">
+      <view class="setting-label">微信服务通知</view>
+      <switch checked="{{settings.wechatNotify}}" bindchange="onToggle" data-key="wechatNotify" />
+    </view>
+    <view class="setting-row">
+      <view class="setting-label">短信通知</view>
+      <switch checked="{{settings.smsNotify}}" bindchange="onToggle" data-key="smsNotify" />
+    </view>
+  </view>
+</view>

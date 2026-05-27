@@ -1,0 +1,121 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 40rpx;
+}
+
+.report-header {
+  background: linear-gradient(135deg, #4A90D9 0%, #7AB8F5 100%);
+  padding: 48rpx 32rpx;
+  color: #FFF;
+}
+
+.report-title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.report-period {
+  font-size: 26rpx;
+  opacity: 0.8;
+  margin-top: 8rpx;
+}
+
+.rate-big {
+  font-size: 72rpx;
+  font-weight: bold;
+  color: var(--success);
+  text-align: center;
+}
+
+.rate-label {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  text-align: center;
+  margin-top: 4rpx;
+}
+
+.rate-bar {
+  height: 12rpx;
+  background: var(--bg);
+  border-radius: 6rpx;
+  margin-top: 16rpx;
+  overflow: hidden;
+}
+
+.rate-fill {
+  height: 100%;
+  background: var(--success);
+  border-radius: 6rpx;
+  transition: width 0.6s ease;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-hint);
+  margin-top: 4rpx;
+}
+
+.trend-list {
+  padding: 8rpx 0;
+}
+
+.trend-item {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.trend-label {
+  width: 80rpx;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.trend-value {
+  width: 60rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  text-align: right;
+  margin-right: 12rpx;
+}
+
+.trend-bar {
+  flex: 1;
+  height: 12rpx;
+  background: var(--bg);
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.trend-fill {
+  height: 100%;
+  border-radius: 6rpx;
+  transition: width 0.6s ease;
+}
+
+.suggestion-item {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  padding: 8rpx 0;
+  line-height: 1.6;
+}
+
+.share-btn {
+  margin: 32rpx 24rpx;
+}

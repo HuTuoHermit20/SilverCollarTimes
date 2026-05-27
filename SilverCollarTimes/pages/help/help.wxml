@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">常见问题</view>
+    <view class="faq-item" wx:for="{{faqs}}" wx:key="q" bindtap="toggleFaq" data-index="{{index}}">
+      <view class="faq-q">{{item.q}}</view>
+      <view class="faq-a" wx:if="{{item.open}}">{{item.a}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">使用指南</view>
+    <view class="guide-item" wx:for="{{guides}}" wx:key="title">
+      <view class="guide-title">{{item.title}}</view>
+      <view class="guide-desc">{{item.desc}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">联系客服</view>
+    <view class="contact-row">
+      <view class="contact-label">客服电话</view>
+      <view class="contact-value">400-123-4567</view>
+    </view>
+    <view class="contact-row">
+      <view class="contact-label">服务时间</view>
+      <view class="contact-value">9:00 - 21:00</view>
+    </view>
+  </view>
+</view>

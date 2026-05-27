@@ -1,0 +1,50 @@
+<view class="container {{fontMode === 'large' ? 'large-font' : ''}}">
+  <view class="msg-tabs">
+    <view class="msg-tab {{activeTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">
+      全部消息
+      <view class="tab-badge" wx:if="{{unreadAll > 0}}">{{unreadAll > 99 ? '99+' : unreadAll}}</view>
+    </view>
+    <view class="msg-tab {{activeTab === 'urgent' ? 'active' : ''}}" bindtap="switchTab" data-tab="urgent">
+      紧急
+      <view class="tab-badge danger" wx:if="{{unreadUrgent > 0}}">{{unreadUrgent}}</view>
+    </view>
+  </view>
+
+  <view class="msg-actions" wx:if="{{messages.length > 0}}">
+    <view class="action-link" bindtap="markAllRead">全部标为已读</view>
+    <view class="action-link" bindtap="goMessageSettings">消息设置</view>
+  </view>
+
+  <view wx:if="{{messages.length === 0}}" class="empty-state">
+    <view class="empty-icon">🔔</view>
+    <view class="empty-text">暂时没有新消息</view>
+  </view>
+
+  <view class="msg-list" wx:if="{{messages.length > 0}}">
+    <view class="msg-card {{item.read ? '' : 'unread'}} {{item.category === 'sos' && !item.handled ? 'urgent-card' : ''}}"
+      wx:for="{{messages}}" wx:key="id"
+      bindtap="openMessage" data-item="{{item}}">
+      <view class="msg-left">
+        <view class="msg-icon {{item.icon}}">
+          <text wx:if="{{item.icon === 'sos'}}">!</text>
+          <text wx:elif="{{item.icon === 'medicine'}}">💊</text>
+          <text wx:elif="{{item.icon === 'missed'}}">⚠️</text>
+          <text wx:elif="{{item.icon === 'battery'}}">🔋</text>
+          <text wx:elif="{{item.icon === 'temperature'}}">🌡️</text>
+          <text wx:else>📢</text>
+        </view>
+        <view wx:if="{{!item.read}}" class="unread-dot"></view>
+      </view>
+      <view class="msg-body">
+        <view class="msg-title">{{item.title}}</view>
+        <view class="msg-content">{{item.content}}</view>
+        <view class="msg-time">{{item.timeText}}</view>
+      </view>
+      <view class="msg-right" wx:if="{{item.category === 'sos' && !item.handled}}">
+        <view class="urgent-btn call-btn" catchtap="callFromSOS" data-item="{{item}}">拨打电话</view>
+        <view class="urgent-btn done-btn" catchtap="handleSOSMsg" data-item="{{item}}">已处理</view>
+      </view>
+      <view class="msg-delete" catchtap="deleteMsg" data-id="{{item.id}}">删除</view>
+    </view>
+  </view>
+</view>

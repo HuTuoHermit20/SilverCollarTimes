@@ -1,0 +1,75 @@
+<view class="container">
+  <view class="form-section">
+    <view class="form-title">{{isEdit ? '编辑用药计划' : '添加用药计划'}}</view>
+
+    <view class="form-item">
+      <view class="form-label">药品名称 *</view>
+      <input class="form-input" placeholder="请输入药品名称（2-20字）" value="{{form.medicineName}}" bindinput="onFieldChange" data-field="medicineName" maxlength="20" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">剂量 *</view>
+      <view class="flex-row">
+        <input class="form-input short" type="digit" placeholder="剂量" value="{{form.dosage}}" bindinput="onFieldChange" data-field="dosage" />
+        <picker mode="selector" range="{{unitOptions}}" value="{{unitIndex}}" bindchange="onUnitChange">
+          <view class="picker-value ml-16">{{unitOptions[unitIndex]}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">指定药格 *</view>
+      <picker mode="selector" range="{{slotOptions}}" value="{{form.slot - 1}}" bindchange="onSlotChange">
+        <view class="picker-value">药格 #{{form.slot || '请选择'}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">用药时间 *</view>
+      <view class="time-list">
+        <view class="time-item" wx:for="{{form.times}}" wx:key="index">
+          <picker mode="time" value="{{item}}" bindchange="onTimeChange" data-index="{{index}}">
+            <view class="time-value">{{item}}</view>
+          </picker>
+          <view class="time-remove" wx:if="{{form.times.length > 1}}" bindtap="removeTime" data-index="{{index}}">✕</view>
+        </view>
+      </view>
+      <view class="btn btn-sm btn-outline mt-8" bindtap="addTime">+ 添加时间点</view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">重复模式</view>
+      <picker mode="selector" range="{{repeatOptions}}" value="{{repeatIndex}}" bindchange="onRepeatChange">
+        <view class="picker-value">{{repeatOptions[repeatIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="form-item" wx:if="{{form.repeatMode === 'weekly'}}">
+      <view class="form-label">选择星期</view>
+      <view class="weekday-selector">
+        <view class="weekday-item {{form.weekDays.indexOf(item) > -1 ? 'active' : ''}}"
+          wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="*this"
+          bindtap="toggleWeekDay" data-day="{{item}}">
+          {{['一','二','三','四','五','六','日'][item-1]}}
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">备注</view>
+      <input class="form-input" placeholder="如：饭前半小时（选填，限50字）" value="{{form.note}}" bindinput="onFieldChange" data-field="note" maxlength="50" />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">提醒提前量</view>
+      <picker mode="selector" range="{{advanceOptions}}" value="{{advanceIndex}}" bindchange="onAdvanceChange">
+        <view class="picker-value">{{advanceOptions[advanceIndex]}}</view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="form-actions">
+    <view class="btn btn-primary" bindtap="savePlan">保存计划</view>
+    <view class="btn btn-outline mt-16" bindtap="saveAsTemplate">保存为模板</view>
+  </view>
+</view>

@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="report-header">
+    <view class="report-title">服药报告</view>
+    <view class="report-period">{{report.period}}</view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">依从率总览</view>
+    <view class="rate-big">{{report.overallRate}}%</view>
+    <view class="rate-label">总体依从率</view>
+    <view class="rate-bar">
+      <view class="rate-fill" style="width: {{report.overallRate}}%"></view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">详细统计</view>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <view class="stat-value text-success">{{report.onTimeCount}}</view>
+        <view class="stat-label">准时服药</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value text-warning">{{report.delayedCount}}</view>
+        <view class="stat-label">延迟服药</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-value text-danger">{{report.missedCount}}</view>
+        <view class="stat-label">漏服</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">趋势分析</view>
+    <view class="trend-list">
+      <view class="trend-item" wx:for="{{report.trends}}" wx:key="label">
+        <view class="trend-label">{{item.label}}</view>
+        <view class="trend-value">{{item.value}}%</view>
+        <view class="trend-bar">
+          <view class="trend-fill" style="width: {{item.value}}%; background: {{item.color}}"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">建议</view>
+    <view class="suggestion-item" wx:for="{{report.suggestions}}" wx:key="*this">
+      {{item}}
+    </view>
+  </view>
+
+  <view class="btn btn-primary share-btn" bindtap="shareReport">分享报告</view>
+</view>

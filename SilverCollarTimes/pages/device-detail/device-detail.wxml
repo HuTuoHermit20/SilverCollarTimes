@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="card device-info-card" wx:if="{{device}}">
+    <view class="flex-row">
+      <view class="device-icon">💊</view>
+      <view class="ml-16">
+        <view class="device-name">{{device.name}}</view>
+        <view class="flex-row mt-8">
+          <view class="status-dot {{device.online ? 'online' : 'offline'}}"></view>
+          <text class="text-hint ml-8">{{device.online ? '在线' : '离线'}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="device-stats mt-16">
+      <view class="stat-row">
+        <text>电量: {{device.battery}}%</text>
+        <text class="{{device.battery <= 20 ? 'text-danger' : ''}}">{{device.battery <= 20 ? ' ⚠️电量低' : ''}}</text>
+      </view>
+      <view class="stat-row">
+        <text>温度: {{device.temperature}}℃ / 湿度: {{device.humidity}}%</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card settings-list" wx:if="{{device}}">
+    <view class="section-title">设备设置</view>
+
+    <view class="setting-row">
+      <view class="setting-label">药箱音量</view>
+      <slider min="0" max="100" value="{{device.volume}}" bindchange="onVolumeChange" show-value block-size="20" />
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">重复提醒间隔</view>
+      <picker mode="selector" range="{{remindOptions}}" value="{{remindIndex}}" bindchange="onRemindChange">
+        <view class="picker-value">{{remindOptions[remindIndex]}}</view>
+      </picker>
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">温度报警上限</view>
+      <input class="setting-input" type="digit" value="{{device.tempHighAlarm}}" bindblur="onTempHighChange" /> ℃
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">温度报警下限</view>
+      <input class="setting-input" type="digit" value="{{device.tempLowAlarm}}" bindblur="onTempLowChange" /> ℃
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">低电量报警</view>
+      <switch checked="{{device.lowBatteryAlarm}}" bindchange="onLowBatteryChange" />
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">灯光亮度</view>
+      <slider min="0" max="100" value="{{device.ledBrightness}}" bindchange="onBrightnessChange" show-value block-size="20" />
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">SOS紧急联系人</view>
+      <view class="picker-value" bindtap="editSOSContact">{{device.sosContact}}</view>
+    </view>
+
+    <view class="setting-row">
+      <view class="setting-label">固件版本</view>
+      <view class="flex-row">
+        <text>{{device.firmwareVersion}}</text>
+        <view class="update-dot" wx:if="{{device.hasUpdate}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn btn-danger unbind-btn" bindtap="unbindDevice">解绑设备</view>
+</view>

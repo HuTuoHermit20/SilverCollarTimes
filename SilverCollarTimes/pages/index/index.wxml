@@ -1,0 +1,124 @@
+<view class="container {{fontMode === 'large' ? 'large-font' : ''}}">
+  <!-- SOS 紧急横幅 -->
+  <view class="sos-banner {{sosActive ? 'sos-show' : ''}}" wx:if="{{sosMessage}}" bindtap="goSOSDetail">
+    <view class="sos-banner-content">
+      <view class="sos-banner-icon">!</view>
+      <view class="sos-banner-text">
+        <view class="sos-banner-title">{{sosMessage.title}}</view>
+        <view class="sos-banner-desc">{{sosMessage.content}}</view>
+      </view>
+    </view>
+    <view class="sos-banner-btn" catchtap="handleSOS">已联系确认</view>
+  </view>
+
+  <!-- 顶部问候区 -->
+  <view class="greeting-section">
+    <view class="greeting-row">
+      <view class="greeting-text">{{greeting}}，{{nickname}}</view>
+      <view class="weather-info" wx:if="{{weather.show}}" bindtap="toggleWeather">
+        <text>{{weather.icon}} {{weather.temp}}°</text>
+      </view>
+    </view>
+    <view class="date-text">{{dateText}} {{weekday}}</view>
+    <view class="weather-tip" wx:if="{{weather.show && weather.tip}}">{{weather.tip}}</view>
+  </view>
+
+  <!-- 设备状态卡片 -->
+  <view class="card device-card" wx:if="{{device}}" bindtap="goDeviceDetail">
+    <view class="flex-between">
+      <view class="flex-row">
+        <view class="device-icon">💊</view>
+        <view class="ml-16">
+          <view class="device-name">{{device.name}}</view>
+          <view class="flex-row mt-8">
+            <view class="status-dot {{device.online ? 'online' : 'offline'}}"></view>
+            <text class="text-hint ml-8">{{device.online ? '在线' : '离线'}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="flex-row">
+        <view class="battery-info {{device.battery <= 20 ? 'text-danger' : ''}} {{device.battery <= 10 ? 'battery-blink' : ''}}">
+          <text>{{device.battery}}%</text>
+        </view>
+        <view class="env-info ml-16">
+          <text>{{device.temperature}}℃ {{device.humidity}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未绑定状态 -->
+  <view class="card unbind-card" wx:if="{{!device}}" bindtap="goBindDevice">
+    <view class="unbind-icon">+</view>
+    <view class="unbind-text">绑定药箱，开始守护</view>
+    <view class="unbind-hint">点击扫码绑定智能药箱</view>
+  </view>
+
+  <!-- 今日服药概览 -->
+  <view class="card medication-overview" wx:if="{{device}}">
+    <view class="section-title">今日服药</view>
+    <view class="progress-area">
+      <view class="progress-ring">
+        <view class="ring-bg">
+          <view class="ring-progress" style="background: conic-gradient(#34C759 {{completionRate * 3.6}}deg, #E8ECF1 {{completionRate * 3.6}}deg)"></view>
+          <view class="ring-inner">
+            <view class="ring-count">{{takenCount}}/{{totalCount}}</view>
+            <view class="ring-label">完成率{{completionRate}}%</view>
+          </view>
+        </view>
+      </view>
+      <view class="progress-status">
+        <view wx:if="{{completionRate === 100}}" class="status-complete">
+          <text>今日服药已完成，妈妈真棒！</text>
+          <view class="like-animation">👍</view>
+        </view>
+        <view wx:elif="{{missedCount > 0}}" class="status-missed">
+          <text class="text-danger">有{{missedCount}}次漏服风险，请关注</text>
+        </view>
+        <view wx:elif="{{nextMedication}}" class="status-upcoming">
+          <text>今天第一次提醒将在 {{nextMedication}}</text>
+        </view>
+        <view wx:else class="status-waiting">
+          <text>等待今日用药</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 最近服药快照 -->
+    <view class="recent-record" wx:if="{{recentRecord}}">
+      <view class="section-subtitle">最近一次服药</view>
+      <view class="record-snapshot">
+        <view class="snapshot-time">{{recentRecord.time}}</view>
+        <view class="snapshot-name">{{recentRecord.name}}</view>
+        <view class="tag {{recentRecord.statusClass}}">{{recentRecord.statusText}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷操作 -->
+  <view class="quick-actions" wx:if="{{device}}">
+    <view class="action-item" bindtap="goPlan">
+      <view class="action-icon">💊</view>
+      <view class="action-label">用药计划</view>
+    </view>
+    <view class="action-item" bindtap="goRemind">
+      <view class="action-icon">🔔</view>
+      <view class="action-label">补药提醒</view>
+      <view class="action-badge" wx:if="{{lowMedicine}}"></view>
+    </view>
+    <view class="action-item" bindtap="callParent">
+      <view class="action-icon">📞</view>
+      <view class="action-label">一键呼叫</view>
+    </view>
+    <view class="action-item" bindtap="showEnvHistory">
+      <view class="action-icon">🌡️</view>
+      <view class="action-label">环境监测</view>
+    </view>
+  </view>
+
+  <!-- 底部健康小贴士 -->
+  <view class="health-tip" wx:if="{{healthTip}}">
+    <view class="tip-content">{{healthTip}}</view>
+    <view class="tip-close" bindtap="closeTip">✕</view>
+  </view>
+</view>

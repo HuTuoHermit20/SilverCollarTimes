@@ -1,0 +1,76 @@
+<view class="container {{fontMode === 'large' ? 'large-font' : ''}}">
+  <view class="profile-header">
+    <view class="avatar" bindtap="editNickname">
+      <view class="avatar-placeholder">👤</view>
+    </view>
+    <view class="profile-info">
+      <view class="profile-name">{{nickname}}</view>
+      <view class="profile-days">已守护 {{bindDays}} 天</view>
+    </view>
+  </view>
+
+  <view class="card family-card">
+    <view class="section-title">亲情号管理</view>
+    <view class="family-list" wx:if="{{familyMembers.length > 0}}">
+      <view class="family-item" wx:for="{{familyMembers}}" wx:key="id">
+        <view class="family-avatar">👤</view>
+        <view class="family-info">
+          <view class="family-name">{{item.name}}</view>
+          <view class="family-role">{{item.role === 'admin' ? '管理员' : '查看者'}}</view>
+        </view>
+        <view class="tag tag-primary" wx:if="{{item.role === 'admin'}}">管理</view>
+      </view>
+    </view>
+    <view class="btn btn-outline mt-16" bindtap="inviteFamily">邀请亲情号</view>
+  </view>
+
+  <view class="card service-card">
+    <view class="section-title">健康服务</view>
+    <view class="service-grid">
+      <view class="service-item" bindtap="openConsult">
+        <view class="service-icon">💬</view>
+        <view class="service-label">健康咨询</view>
+      </view>
+      <view class="service-item" bindtap="openPharmacy">
+        <view class="service-icon">🏪</view>
+        <view class="service-label">在线购药</view>
+      </view>
+      <view class="service-item" bindtap="openMall">
+        <view class="service-icon">🎁</view>
+        <view class="service-label">积分商城</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card settings-card">
+    <view class="section-title">设置</view>
+    <view class="setting-item" bindtap="toggleFont">
+      <view class="setting-label">字体大小</view>
+      <view class="setting-value">{{fontMode === 'large' ? '大字体' : '标准'}}</view>
+    </view>
+    <view class="setting-item" bindtap="goHelp">
+      <view class="setting-label">帮助中心</view>
+      <view class="setting-arrow">›</view>
+    </view>
+    <view class="setting-item" bindtap="goFeedback">
+      <view class="setting-label">意见反馈</view>
+      <view class="setting-arrow">›</view>
+    </view>
+    <view class="setting-item" bindtap="goAbout">
+      <view class="setting-label">关于</view>
+      <view class="setting-value">V1.0.0</view>
+    </view>
+  </view>
+
+  <!-- 调试面板（连续点击版本号5次开启） -->
+  <view class="card debug-card" wx:if="{{showDebug}}">
+    <view class="section-title">调试面板</view>
+    <view class="debug-grid">
+      <view class="btn btn-sm btn-primary" bindtap="debugSimulateMedication">模拟服药</view>
+      <view class="btn btn-sm btn-danger" bindtap="debugTriggerSOS">模拟SOS</view>
+      <view class="btn btn-sm btn-outline" bindtap="debugResetData">重置数据</view>
+    </view>
+  </view>
+
+  <view class="btn btn-danger logout-btn" bindtap="logout">退出登录</view>
+</view>

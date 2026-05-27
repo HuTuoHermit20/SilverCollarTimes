@@ -1,0 +1,38 @@
+<view class="container">
+  <view class="calendar-bar">
+    <scroll-view class="calendar-scroll" scroll-x enable-flex>
+      <view class="calendar-day {{item.isToday ? 'today' : ''}} {{item.date === selectedDate ? 'selected' : ''}}"
+        wx:for="{{calendarDays}}" wx:key="date"
+        bindtap="selectDate" data-date="{{item.date}}">
+        <view class="cal-day-name">{{item.dayName}}</view>
+        <view class="cal-day-num">{{item.day}}</view>
+        <view class="cal-dot {{item.dotColor}}" wx:if="{{item.hasPlan}}"></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="plan-list" wx:if="{{plans.length > 0}}">
+    <view class="plan-card" wx:for="{{plans}}" wx:key="id">
+      <view class="flex-between">
+        <view class="plan-time">{{item.times[0]}}</view>
+        <view class="tag {{item.statusTag}}">{{item.statusText}}</view>
+      </view>
+      <view class="plan-medicine">{{item.medicineName}} {{item.dosage}}{{item.unit}}</view>
+      <view class="plan-slot">药格 #{{item.slot}}</view>
+      <view class="plan-actions">
+        <view class="action-btn" bindtap="editPlan" data-id="{{item.id}}">编辑</view>
+        <view class="action-btn danger" bindtap="deletePlan" data-id="{{item.id}}">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{plans.length === 0}}" class="empty-state">
+    <view class="empty-icon">📋</view>
+    <view class="empty-text">今天没有用药安排</view>
+  </view>
+
+  <view class="bottom-actions">
+    <view class="btn btn-primary" bindtap="addPlan">添加计划</view>
+    <view class="btn btn-outline mt-16" bindtap="openTemplates">常用模板</view>
+  </view>
+</view>

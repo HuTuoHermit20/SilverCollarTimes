@@ -1,0 +1,37 @@
+<view class="container">
+  <view class="sos-header">
+    <view class="sos-icon">!</view>
+    <view class="sos-title">紧急求助</view>
+    <view class="sos-time">{{sosTime}}</view>
+  </view>
+
+  <view class="card">
+    <view class="sos-info">
+      <view class="info-row">
+        <view class="info-label">求助人</view>
+        <view class="info-value">妈妈</view>
+      </view>
+      <view class="info-row">
+        <view class="info-label">触发时间</view>
+        <view class="info-value">{{sosTime}}</view>
+      </view>
+      <view class="info-row">
+        <view class="info-label">设备状态</view>
+        <view class="info-value">{{deviceStatus}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sos-actions">
+    <view class="btn btn-primary" bindtap="callContact">立即拨打电话</view>
+    <view class="btn btn-outline mt-16" bindtap="markHandled">标记为已处理</view>
+  </view>
+
+  <view class="sos-tips card">
+    <view class="section-title">处理建议</view>
+    <view class="tip-item">1. 立即拨打老人电话确认情况</view>
+    <view class="tip-item">2. 如无法联系，联系邻居或物业协助查看</view>
+    <view class="tip-item">3. 必要时拨打120急救电话</view>
+    <view class="tip-item">4. 处理后请标记为已处理，系统将向药箱发送安抚提示</view>
+  </view>
+</view>
